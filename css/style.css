@@ -1,0 +1,98 @@
+:root {
+    --primary: #4D5BBE; 
+    --background: #F8F9FD;
+    --text1: #292E4A;
+    --text2: var(--background);
+    --transparent_grey: #fffcfc2e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #F8F9FD;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.container {
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+}
+
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text2);
+}
+
+.date-card {
+    display: flex;
+    flex-direction: column;
+    width: 3rem;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    border-radius: 20%;
+    font-size: 15px;
+    background: var(--transparent_grey);
+}
+
+.date-card.active {
+    background: var(--background);
+    color: var(--primary);
+}
+
+
+.date-card strong {
+    font-size: 18px;
+}
+
+/* App Header */
+.app-header {
+    background: var(--primary);
+    color: var(--text2);
+}
+
+.app-header .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.app-header .navigation .btn-toggle {
+    font-size: 1.5rem;
+}
+
+.app-header .navigation .user-area {
+    width: 2.4rem;
+}
+
+.app-header .navigation .user-area img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.app-header .mid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.app-header .calendar-title {
+    margin-bottom: 1rem;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.app-header .calendar {
+    display: inline-flex;
+}
+
+.app-header .calendar .date-card {
+    margin-right: 20px
+}

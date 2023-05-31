@@ -4,27 +4,132 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/5034295430.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/5034295430.js" crossorigin="anonymous"></script>
     <title>ToDo App</title>
 </head>
 <body>
     <!-- App header -->
     <header class="app-header container">
         <nav class="navigation">
-            <button class="toggle fa-solid fa-bars"></button>
-            <div class="avatar"><img src="" alt="" srcset="assets/images/man.jpg"></div>
+            <button class="btn btn-toggle fa-solid fa-bars"></button>
+            <div class="user-area"><img src="" alt="" srcset="assets/images/man.jpg"></div>
         </nav>
+        <section class="mid-header">
+            <h1 class="app-title">To-do list</h1>
+            <btn class="btn date-card active"><strong>21</strong>Sep</btn>
+        </section>
+        <button class="btn calendar-title">September <i class="fa-sharp fa-solid fa-chevron-down"></i></button>
+        <div class="calendar">
+            <btn class="btn date-card active"><strong>21</strong>Sep</btn>
+            <btn class="btn date-card"><strong>22</strong>Sep</btn>
+            <btn class="btn date-card"><strong>23</strong>Sep</btn>
+            <btn class="btn date-card"><strong>24</strong>Sep</btn>
+            <btn class="btn date-card"><strong>25</strong>Sep</btn>
+            <btn class="btn date-card"><strong>26</strong>Sep</btn>
+            <btn class="btn date-card"><strong>27</strong>Sep</btn>
+        </div>
     </header>
 
     <!-- App Main -->
-    <main class="app-main">
+    <main class="app-main container">
+        <nav class="tasks">
+            <ul>
+                <li>All Tasks <span class="count">5</span>
+                    <ul>
+                        <li class="task-card">
+                            <span>new</span>
+                            <h3>Buy paper</h3>
+                            <p>Limit 28 Sep</p>
+                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="task-card">
+                            <span>new</span>
+                            <h3>Wash dishes</h3>
+                            <p>Today</p>
+                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="task-card">
+                            <h3>Wash dishes <span class="pending"></span></h3>
+                            <p>Today</p>
+                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="task-card">
+                            <h3>Clean Kitchen</h3>
+                            <p>Today</p>
+                            <div class="confirm"></div>
+                        </li>
+                        <li class="task-card">
+                            <h3>Pay utilities</h3>
+                            <p>Today</p>
+                            <div class="confirm"></div>
+                        </li>
+                        <li class="task-card">
+                            <h3>Buy food</h3>
+                            <p>Today</p>
+                            <div class="confirm"></div>
+                        </li>
+                    </ul>
 
+                </li>
+                <li>My Tasks <span class="count">3</span>
+                    <ul>
+                        <li class="task-card">
+                            <span>new</span>
+                            <h3>Buy paper</h3>
+                            <p>Limit 28 Sep</p>
+                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="task-card">
+                            <span>new</span>
+                            <h3>Wash dishes</h3>
+                            <p>Today</p>
+                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="task-card">
+                            <h3>Wash dishes <span class="pending"></span></h3>
+                            <p>Today</p>
+                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </main>
 
     <!-- App Footer -->
-    <footer class="app-footer">
-
+    <footer class="app-footer container">
+        <button class="btn" id="add_new-task">+</button>
+        <div class="task-modal">
+            <h2>Add tasl</h2>
+            <button class="btn fa-regular fa-xmark" id="btn_close"></button>
+            <form class="add_task-form">
+                <input class="new_task-name" type="text" placeholder="Name">
+                <textarea class="new_task-description" placeholder="Task description"></textarea>
+                <div class="btn-options">
+                    <button class="btn btn-active">Today</button>
+                    <button class="btn">Tomorrow</button>
+                    <button class="btn">This Weekend</button>
+                    <button class="btn"><i class="fa-light fa-calendar"></i></button>
+                </div>
+                <label for="task-priority"></label>
+                <input type="checkbox" class="new_task-priotity" id="task-priority">
+                <button class="btn">Add task</button>
+            </form>
+        </div>
     </footer>
 
     <script src="js/main.js"></script>
