@@ -38,76 +38,87 @@
     <main class="app-main container">
         <nav class="tasks">
             <ul>
-                <li>All Tasks <span class="count">5</span>
-                    <ul>
-                        <li class="task-card">
-                            <span>new</span>
-                            <h3>Buy paper</h3>
-                            <p>Limit 28 Sep</p>
-                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="task-card">
-                            <span>new</span>
-                            <h3>Wash dishes</h3>
-                            <p>Today</p>
-                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="task-card">
-                            <h3>Wash dishes <span class="pending"></span></h3>
-                            <p>Today</p>
-                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="task-card">
-                            <h3>Clean Kitchen</h3>
-                            <p>Today</p>
-                            <div class="confirm"></div>
-                        </li>
-                        <li class="task-card">
-                            <h3>Pay utilities</h3>
-                            <p>Today</p>
-                            <div class="confirm"></div>
-                        </li>
-                        <li class="task-card">
-                            <h3>Buy food</h3>
-                            <p>Today</p>
-                            <div class="confirm"></div>
-                        </li>
-                    </ul>
-
-                </li>
-                <li>My Tasks <span class="count">3</span>
-                    <ul>
-                        <li class="task-card">
-                            <span>new</span>
-                            <h3>Buy paper</h3>
-                            <p>Limit 28 Sep</p>
-                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="task-card">
-                            <span>new</span>
-                            <h3>Wash dishes</h3>
-                            <p>Today</p>
-                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="task-card">
-                            <h3>Wash dishes <span class="pending"></span></h3>
-                            <p>Today</p>
-                            <div class="confirm"><i class="fa-solid fa-hand"></i></div>
-                        </li>
-                    </ul>
-                </li>
+                <li>All Tasks <span class="count">5</span></li>
+                <li class="active">My Tasks <span class="count">3</span></li>
             </ul>
         </nav>
+        <div class="tasks-container">
+            <section class="task-content disable">
+                <ul>
+                    <li class="task-card">
+                        <div class="left">
+                            <span class="new">new</span>
+                            <h3>Buy paper</h3>
+                            <p>Limit 28 Sep</p>
+                        </div>
+                        <div class="right"><i class="fa-solid fa-hand"></i></div>
+                    </li>
+                    <li class="task-card">
+                        <div class="left">
+                            <span class="new">new</span>
+                            <h3>Wash dishes</h3>
+                            <p>Today</p>
+                        </div>
+                        <div class="right"><i class="fa-solid fa-hand"></i></div>
+                    </li>
+                    <li class="task-card">
+                        <div class="left">
+                            <h3>Wash dishes <span class="pending"></span></h3>
+                            <p>Today</p>
+                        </div>
+                        <div class="right"><i class="fa-solid fa-hand"></i></div>
+                    </li>
+                    <li class="task-card">
+                        <div class="left">
+                            <h3>Clean Kitchen</h3>
+                            <p>Today</p>
+                        </div>
+                        <div class="right"></div>
+                    </li>
+                    <li class="task-card">
+                        <div class="left">
+                            <h3>Pay utilities</h3>
+                            <p>Today</p>
+                        </div>
+                        <div class="right"></div>
+                    </li>
+                    <li class="task-card">
+                        <div class="left">
+                            <h3>Buy food</h3>
+                            <p>Today</p>
+                        </div>
+                        <div class="right"></div>
+                    </li>
+                </ul>
+            </section>
+            <section class="task-content">
+                <ul>
+                    <li class="task-card">
+                        <div class="left">
+                            <span class="new">new</span>
+                            <h3>Buy paper</h3>
+                            <p>Limit 28 Sep</p>
+                        </div>
+                        <div class="right"><i class="fa-solid fa-hand"></i></div>
+                    </li>
+                    <li class="task-card">
+                        <div class="left">
+                            <span class="new">new</span>
+                            <h3>Wash dishes</h3>
+                            <p>Today</p>
+                        </div>
+                        <div class="right"><i class="fa-solid fa-hand"></i></div>
+                    </li>
+                    <li class="task-card">
+                        <div class="left">
+                            <h3>Wash dishes <span class="pending"></span></h3>
+                            <p>Today</p>
+                        </div>
+                        <div class="right"><i class="fa-solid fa-hand"></i></div>
+                    </li>
+                </ul>
+            </section>
+        </div>
     </main>
 
     <!-- App Footer -->

@@ -1,9 +1,13 @@
 :root {
     --primary: #4D5BBE; 
     --background: #F8F9FD;
+    --background2: #FFFFFF;
     --text1: #292E4A;
     --text2: var(--background);
     --transparent_grey: #fffcfc2e;
+    --clearPrimary: #ac86d23b; 
+    --hand_icon: #ffa200;
+    --new_icon: #52ba89;
 }
 
 * {
@@ -15,6 +19,10 @@
 body {
     background: #F8F9FD;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+li {
+    list-style: none;
 }
 
 .container {
@@ -46,7 +54,6 @@ body {
     color: var(--primary);
 }
 
-
 .date-card strong {
     font-size: 18px;
 }
@@ -68,7 +75,7 @@ body {
 }
 
 .app-header .navigation .user-area {
-    width: 2.4rem;
+    width: 3rem;
 }
 
 .app-header .navigation .user-area img {
@@ -95,4 +102,70 @@ body {
 
 .app-header .calendar .date-card {
     margin-right: 20px
+}
+
+/* App Main */
+.app-main .tasks ul {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.app-main .tasks ul li {
+    width: 100%;
+    font-weight: 700;
+    font-size: 1.4rem;
+    text-align: center;
+    min-height: 36px;
+}
+
+.app-main .tasks ul li .count {
+    background: var(--clearPrimary);
+    padding: 2px 6px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.app-main .tasks ul li.active {
+    border-bottom: 3px solid var(--primary);
+}
+
+.app-main .task-content {
+    margin: 1rem 0;
+}
+
+.app-main .task-content.disable {
+    display: none;
+}
+
+.app-main .task-content .task-card {
+    height: 70px;
+    border-radius: 15px;
+    background: var(--background2);
+    box-shadow: 2px 2px 16px 1px #33249734;
+    margin: 1.5rem 0;
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-main .task-content .task-card .new {
+    background: var(--new_icon);
+    position: absolute;
+    top: -12px;
+    padding: 3px;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--text2);
+}
+
+.app-main .task-content .task-card p {
+    font-size: .854rem;
+    color: var(--primary);
+}
+
+.app-main .task-content .task-card .right {
+    font-size: 2rem;
+    color: var(--hand_icon);
 }
