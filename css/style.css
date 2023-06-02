@@ -8,6 +8,8 @@
     --clearPrimary: #ac86d23b; 
     --hand_icon: #ffa200;
     --new_icon: #52ba89;
+    --alt-border: #c8c7c7;;
+    --text3: var(--alt-border);
 }
 
 * {
@@ -32,9 +34,7 @@ li {
 
 .btn {
     background: none;
-    border: none;
     cursor: pointer;
-    color: var(--text2);
 }
 
 .date-card {
@@ -62,6 +62,12 @@ li {
 .app-header {
     background: var(--primary);
     color: var(--text2);
+    box-shadow: 2px 2px 16px 2px #00000030;  
+}
+
+.app-header .btn {
+    color: var(--text2);
+    border: none;
 }
 
 .app-header .navigation {
@@ -169,3 +175,96 @@ li {
     font-size: 2rem;
     color: var(--hand_icon);
 }
+
+/* App Footer */
+.app-footer {
+    /* position: relative; */
+}
+
+.app-footer .btn#add_new-task {
+    background: var(--primary);
+    font-size: 3rem;
+    min-width: 60px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 16px 2px #00000030;
+    display: block;
+    margin-left: auto;
+}
+
+.app-footer .task-modal {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: var(--background2);
+    border-radius: 2rem 2rem 0 0;
+    padding: 1rem;
+    width: 100%;
+
+    border: 1px solid red;
+}
+
+.app-footer .task-modal h2 {
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 1.7rem;
+    font-weight: 800;
+}
+
+.app-footer .task-modal form {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-footer .task-modal form input, 
+.app-footer .task-modal form textarea {
+    margin: 1rem 0;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--alt-border);
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.app-footer .task-modal form textarea {
+   height: 130px
+}
+
+.app-footer .task-modal form .priority {
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text3);
+}
+
+.app-footer .task-modal form .priority input {
+    margin-left: 5px;
+}
+
+.app-footer .task-modal .btn-options {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.app-footer .task-modal .btn-options .btn {
+    border: 1px solid var(--alt-border);
+    padding: 15px;
+    border-radius: 10px;
+    color: var(--text3);
+}
+
+.app-footer .task-modal .btn-options .btn-active {
+    background: var(--primary);
+    color: var(--text2)
+}
+
+.app-footer .task-modal .btn-m { 
+    background: var(--primary);
+    color: var(--text2);
+    padding: 1rem;
+    border: none;
+    box-shadow: 1px 1px 6px 1px #00000030;
+    border-radius: 10px;
+}
+
+

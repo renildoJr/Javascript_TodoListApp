@@ -85,7 +85,7 @@
                     <li class="task-card">
                         <div class="left">
                             <h3>Buy food</h3>
-                            <p>Today</p>
+                            <p>Today</p> 
                         </div>
                         <div class="right"></div>
                     </li>
@@ -125,8 +125,7 @@
     <footer class="app-footer container">
         <button class="btn" id="add_new-task">+</button>
         <div class="task-modal">
-            <h2>Add tasl</h2>
-            <button class="btn fa-regular fa-xmark" id="btn_close"></button>
+            <h2>Add task</h2>
             <form class="add_task-form">
                 <input class="new_task-name" type="text" placeholder="Name">
                 <textarea class="new_task-description" placeholder="Task description"></textarea>
@@ -136,13 +135,15 @@
                     <button class="btn">This Weekend</button>
                     <button class="btn"><i class="fa-light fa-calendar"></i></button>
                 </div>
-                <label for="task-priority"></label>
-                <input type="checkbox" class="new_task-priotity" id="task-priority">
-                <button class="btn">Add task</button>
+                <label class="priority" for="task-priority">High priority
+                    <input type="checkbox" class="new_task-priotity" id="task-priority">
+                </label>
+                <button class="btn btn-m">Add task</button>
             </form>
         </div>
+        <button class="btn fa-regular fa-xmark" id="btn_close"></button>
     </footer>
 
     <script src="js/main.js"></script>
 </body>
-</html>
+</html
