@@ -49,11 +49,6 @@ li {
     background: var(--transparent_grey);
 }
 
-.date-card.active {
-    background: var(--background);
-    color: var(--primary);
-}
-
 .date-card strong {
     font-size: 18px;
 }
@@ -102,6 +97,12 @@ li {
     font-weight: 600;
 }
 
+.app-header .date-card.active {
+    background: var(--background);
+    color: var(--primary);
+    border: none;
+}
+
 .app-header .calendar {
     display: inline-flex;
 }
@@ -109,6 +110,7 @@ li {
 .app-header .calendar .date-card {
     margin-right: 20px
 }
+
 
 /* App Main */
 .app-main .tasks ul {
@@ -177,18 +179,16 @@ li {
 }
 
 /* App Footer */
-.app-footer {
-    /* position: relative; */
-}
-
 .app-footer .btn#add_new-task {
     background: var(--primary);
     font-size: 3rem;
     min-width: 60px;
+    border: none;
     border-radius: 10px;
-    box-shadow: 2px 2px 16px 2px #00000030;
+    box-shadow: 2px 2px 16px 2px #00000037;
     display: block;
     margin-left: auto;
+    color: var(--text2);
 }
 
 .app-footer .task-modal {
@@ -199,8 +199,15 @@ li {
     border-radius: 2rem 2rem 0 0;
     padding: 1rem;
     width: 100%;
+}
 
-    border: 1px solid red;
+.app-footer .task-modal .btn-close {
+    border: none;
+    color: var(--text3);
+    font-size: 1.5rem;
+    position: absolute;
+    right: 0;
+    margin-right: 1rem;
 }
 
 .app-footer .task-modal h2 {
@@ -210,13 +217,13 @@ li {
     font-weight: 800;
 }
 
-.app-footer .task-modal form {
+.app-footer .task-modal .add_new-container {
     display: flex;
     flex-direction: column;
 }
 
-.app-footer .task-modal form input, 
-.app-footer .task-modal form textarea {
+.app-footer .task-modal .add_new-container input, 
+.app-footer .task-modal .add_new-container textarea {
     margin: 1rem 0;
     padding: 10px;
     font-size: 1rem;
@@ -225,18 +232,18 @@ li {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
-.app-footer .task-modal form textarea {
+.app-footer .task-modal .add_new-container textarea {
    height: 130px
 }
 
-.app-footer .task-modal form .priority {
+.app-footer .task-modal .add_new-container .priority {
     margin-left: auto;
     margin-top: 1rem;
     margin-bottom: 1rem;
     color: var(--text3);
 }
 
-.app-footer .task-modal form .priority input {
+.app-footer .task-modal .add_new-container .priority input {
     margin-left: 5px;
 }
 
@@ -267,4 +274,11 @@ li {
     border-radius: 10px;
 }
 
+/* Effects */
+.opacity {
+    opacity: .6
+}
 
+.disable {
+    display: none;
+}
