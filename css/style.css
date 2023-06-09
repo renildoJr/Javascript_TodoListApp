@@ -29,6 +29,8 @@ li {
 
 .container {
     padding: 2rem 1rem;
+    max-width: 960px;
+    margin: 0 auto;
     overflow-x: hidden;
 }
 
@@ -88,7 +90,7 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 2rem 0;
+    margin: 1rem 0;
 }
 
 .app-header .calendar-title {
@@ -104,11 +106,14 @@ li {
 }
 
 .app-header .calendar {
-    display: inline-flex;
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
 }
 
 .app-header .calendar .date-card {
-    margin-right: 20px
+    margin-right: 20px;
+    min-width: 50px;
 }
 
 

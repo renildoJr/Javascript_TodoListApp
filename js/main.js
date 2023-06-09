@@ -15,8 +15,7 @@ function openModal() {
     
     modal.classList.remove('disable') 
     appHeader.classList.add('opacity')
-    // appMain.classList.add('disable')
-    // appFooter.classList.add('disable')
+    appMain.style.maxHeight="300px"
 
     inputTaskName.value = ''
     inputTaskDesc.value = ''
@@ -45,8 +44,7 @@ function alternateClickable(btnArr, className, displayElements = false, elements
 function closeModal() {
     modal.classList.add('disable') 
     appHeader.classList.remove('opacity')
-    // appMain.style.display="content"
-    // appFooter.style.display="content"
+    appMain.style.maxHeight="100%"
 }
 
 alternateClickable(taskLinks, 'active', tasksContainerList, 'disable')
