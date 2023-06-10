@@ -1,20 +1,30 @@
-const content = document.querySelector('.content')
-
-const person = {
-    name: 'Muls',
-    age: 32,
-    job: "Jumper"
+class Person {
+    id;
+    name;
+    age;
+    job;
+    constructor(name, age, job, id) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.job = job;
+    }
 }
 
-function saveData(data) {
-    getData('person')
-    return localStorage.setItem('person', data+JSON.stringify(data)) 
+function addPerson(name, age, job) {
+    const previousData = getPerson();
+    let personId = previousData[previousData.length - 1].id
+    personId++
+
+    const p = new Person(name, age, job, personId);
+    previousData.push(p);
+    return localStorage.setItem('person', JSON.stringify(previousData));
 }
 
-saveData(person)
 
-function getData(data) {
-    return JSON.parse(localStorage.getItem(data)) || '[]'
+function getPerson() {
+    return JSON.parse(localStorage.getItem('person')) || [];
 }
 
-// console.log(getData('person'))
+addPerson('Adolfinho', 200, 'Atist');
+console.log(getPerson())
