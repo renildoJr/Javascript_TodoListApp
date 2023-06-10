@@ -13,18 +13,21 @@ class Person {
 
 function addPerson(name, age, job) {
     const previousData = getPerson();
-    let personId = previousData[previousData.length - 1].id
-    personId++
+    let lastId = 0;
 
-    const p = new Person(name, age, job, personId);
+    if(previousData.length > 0) {
+        lastId = previousData[previousData.length - 1].id + 1;
+    }
+
+    const p = new Person(name, age, job, lastId);
     previousData.push(p);
     return localStorage.setItem('person', JSON.stringify(previousData));
 }
-
 
 function getPerson() {
     return JSON.parse(localStorage.getItem('person')) || [];
 }
 
-addPerson('Adolfinho', 200, 'Atist');
-console.log(getPerson())
+function getById(id) {
+    return getPerson().filter(row => row.id === id)[0] || false;
+}
