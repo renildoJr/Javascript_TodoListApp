@@ -12,6 +12,12 @@ class Person {
 }
 
 function addPerson(name, age, job) {
+    const findSameName = getPerson().find(obj=>obj.name.toLowerCase() === name.toLowerCase()) || false;
+    
+    if(findSameName) {
+        return alert('Essa pessoa já existe. Adicione outra')
+    }
+    
     const previousData = getPerson();
     let lastId = 0;
 
@@ -21,6 +27,7 @@ function addPerson(name, age, job) {
 
     const p = new Person(name, age, job, lastId);
     previousData.push(p);
+
     return localStorage.setItem('person', JSON.stringify(previousData));
 }
 
@@ -29,5 +36,26 @@ function getPerson() {
 }
 
 function getById(id) {
-    return getPerson().filter(row => row.id === id)[0] || false;
+    return getPerson().find(obj => obj.id === id) || false;
+}
+
+function removeById(id) {
+    
+    const items = getPerson();
+    const itemToRemove = items.findIndex(obj => obj.id === id)
+    if(itemToRemove !== -1) {
+        items.splice(itemToRemove, 1);
+        return localStorage.setItem('person', JSON.stringify(items)) || false;
+    }
+    return false;
+}
+
+function updateById(id, name, age, job) {
+    const items = getPerson();
+    const itemToChange = items.findIndex((obj => obj.id === id ));
+    items[itemToChange].name = name;
+    items[itemToChange].age = age;
+    items[itemToChange].job = job;
+    return localStorage.setItem('person', JSON.stringify(items))
+    
 }
