@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.content {
+    width: 400px;
+    margin: 125px auto;
+    list-style: none;
+    border: 1px solid #bab8b8;
+    padding: 2rem
+}
+
+.content h1 {
+   margin-bottom: 25px;
+}
+
+.content .card {
+    background: #00ccff;
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 0 0 16px 4px #0000001b;
+    margin-bottom: 2rem;
+}
+
+.content .card:last-child {
+    margin-bottom: 0
+}
+
+.content .card .btn {
+    padding: 5px;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: .3s
+}
+
+.content .card .btn:hover {
+    background: #8c8c8c
+}
+
+.content .card span {
+    display: block;
+    margin: 5px 0;
+    font-size: 1.2rem;
+}
