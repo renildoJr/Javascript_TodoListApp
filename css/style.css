@@ -10,6 +10,7 @@
     --new_icon: #52ba89;
     --alt-border: #c8c7c7;;
     --text3: var(--alt-border);
+    --selected_card: #bfafff;
 }
 
 * {
@@ -161,6 +162,12 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.app-main .task-content .task-card:hover {
+    background: var(--selected_card);
 }
 
 .app-main .task-content .task-card .new {

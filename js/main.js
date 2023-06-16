@@ -4,6 +4,7 @@ const appFooter = document.querySelector('app-footer')
 const btnOpenModal = document.querySelector('.btn#add_new-task')
 const taskLinks = document.querySelectorAll('.app-main .tasks ul li')
 const modal = document.querySelector('.task-modal')
+const btnAddTask = document.querySelector('.task-modal .btn-m')
 const tasksContainerList = document.querySelectorAll('.tasks-container .task-content')
 
 function openModal() {
@@ -23,6 +24,13 @@ function openModal() {
 
     alternateClickable(btnOptions, 'btn-active')
     btnCloseModal.addEventListener('click', closeModal)
+
+    // Add New Task 
+    btnAddTask.addEventListener('click', (event)=>{
+        // event.preventDefault()
+        addTask(inputTaskName.value, inputTaskDesc.value, 0, inputTaskPriority.checked)
+    })
+
 
 }
 
@@ -49,3 +57,69 @@ function closeModal() {
 
 alternateClickable(taskLinks, 'active', tasksContainerList, 'disable')
 btnOpenModal.addEventListener('click', openModal)
+
+// localStorage Operations
+class Task {
+    id
+    name
+    desc
+    days
+    prior
+    constructor(id, name, desc, days, prior) {
+        this.id = id
+        this.name = name
+        this.desc = desc
+        this.days = days
+        this.prior = prior
+    }
+}
+
+const allTasks = () => JSON.parse(localStorage.getItem('tasks')) || []
+const doneTasks = () =>  JSON.parse(localStorage.getItem('done_tasks')) || []
+
+const addTask = (name, desc, days = [] || 0, prior = false) => {
+    const existingItems = allTasks()
+    const newId = allTasks().length > 0 ? allTasks()[allTasks().length - 1].id + 1 : 0
+    const newTask = new Task(newId, name, desc, days, prior)
+    existingItems.push(newTask)
+    return localStorage.setItem('tasks', JSON.stringify(existingItems))
+}
+
+function displayTasks(filter = 'all') {
+    const sectionAllTasks = tasksContainerList[0].childNodes[1]
+    const existingItems = allTasks()
+
+    if(!existingItems) {
+        return sectionAllTasks.innerHTML = '<h3>Nenhum item para mostrar</h3>'
+    }
+
+    existingItems.map(task => sectionAllTasks.innerHTML+=`
+        <li draggable='true' class="task-card" onclick="finishTask(${task.id})">
+            <div class="left">
+                <h3>${task.name}</h3>
+                <p>${task.days === 0 ? 'Today' : 'MODIFICAR ISSO MAIS TARDE EX: mon, tue, wed, ...'}</p> 
+            </div>
+            <div class="right"></div>
+        </li>
+    
+    `)
+} 
+
+function finishTask(taskId) {
+    const taskIndex = allTasks().findIndex(item=>item.id === taskId)
+    const existingItems = allTasks()
+    const task = existingItems[taskIndex]
+    const existingDoneTasks = doneTasks()
+    existingDoneTasks.push(task)
+    existingItems.splice(taskIndex, 1)
+    localStorage.setItem('tasks', JSON.stringify(existingItems))
+    localStorage.setItem('done_tasks', JSON.stringify(existingDoneTasks))
+    return location.reload() // Método provisório
+}
+
+displayTasks()
+
+console.log(allTasks())
+
+
+console.log(doneTasks())

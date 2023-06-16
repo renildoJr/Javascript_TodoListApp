@@ -43,11 +43,16 @@ function getById(id) {
 
 function removeById(id) {
     const items = getPerson();
-    const itemToRemove = items.findIndex(obj => obj.id === id)
-    if(itemToRemove !== -1) {
+    const itemToRemove = items.findIndex(obj => obj.id === id);
+    const itemName =  getPerson()[itemToRemove].name;
+
+    const areYouSure = confirm(`Tem certeza que quer remover ${itemName}?`);
+
+    if((itemToRemove !== -1) && areYouSure) {
         items.splice(itemToRemove, 1);
         return localStorage.setItem('person', JSON.stringify(items)) || false;
     }
+
     return false;
 }
 
@@ -64,9 +69,8 @@ function listAll(sortBy) {
     return getPerson().map(person=>
         content.innerHTML+=`
         <li class="card">
-            <input class="id" type="hidden" value="${person.id}">
             <button class="btn" id="update">Edit</button>
-            <button class="btn" id="delete">Remove</button>
+            <button class="btn" id="delete" onclick="removeById(${person.id})">Remove</button>
             <div class="card-info">
                 <span class="info"><strong>Name: </strong>${person.name}</spa> 
                 <span class="info"><strong>Age: </strong>${person.age}</spa> 
@@ -76,15 +80,4 @@ function listAll(sortBy) {
     ) 
 }
 
-
 listAll('name')
-function crudOperations() {
-    const buttonList = document.querySelectorAll('.card .btn#delete');
-    document.querySelectorAll('.id').forEach(item=>ids.push(item.value));
-    buttonList.forEach((btn, index)=>btn.addEventListener('click', ()=>{
-        removeById(index)
-    }))
-}
-
-crudOperations()
-

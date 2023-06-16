@@ -38,12 +38,12 @@
     <main class="app-main container">
         <nav class="tasks">
             <ul>
-                <li>All Tasks <span class="count">5</span></li>
-                <li class="active">My Tasks <span class="count">3</span></li>
+                <li class="active">All Tasks <span class="count">5</span></li>
+                <li>Important <span class="count">3</span></li>
             </ul>
         </nav>
         <div class="tasks-container">
-            <section class="task-content disable">
+            <section class="task-content">
                 <ul>
                     <li class="task-card">
                         <div class="left">
@@ -61,37 +61,9 @@
                         </div>
                         <div class="right"><i class="fa-solid fa-hand"></i></div>
                     </li>
-                    <li class="task-card">
-                        <div class="left">
-                            <h3>Wash dishes <span class="pending"></span></h3>
-                            <p>Today</p>
-                        </div>
-                        <div class="right"><i class="fa-solid fa-hand"></i></div>
-                    </li>
-                    <li class="task-card">
-                        <div class="left">
-                            <h3>Clean Kitchen</h3>
-                            <p>Today</p>
-                        </div>
-                        <div class="right"></div>
-                    </li>
-                    <li class="task-card">
-                        <div class="left">
-                            <h3>Pay utilities</h3>
-                            <p>Today</p>
-                        </div>
-                        <div class="right"></div>
-                    </li>
-                    <li class="task-card">
-                        <div class="left">
-                            <h3>Buy food</h3>
-                            <p>Today</p> 
-                        </div>
-                        <div class="right"></div>
-                    </li>
                 </ul>
             </section>
-            <section class="task-content">
+            <section class="task-content disable">
                 <ul>
                     <li class="task-card">
                         <div class="left">
@@ -127,7 +99,7 @@
         <div class="task-modal disable">
             <button class="btn btn-close fa-solid fa-xmark"></button>
             <h2>Add task</h2>
-            <div class="add_new-container">
+            <form class="add_new-container">
                 <input class="new_task-name" type="text" placeholder="Name">
                 <textarea class="new_task-description" placeholder="Task description"></textarea>
                 <div class="btn-options">
@@ -140,7 +112,7 @@
                     <input type="checkbox" class="new_task-priotity" id="task-priority">
                 </label>
                 <button class="btn btn-m">Add task</button>
-            </div class="add_new-container">
+            </form class="add_new-container">
         </div>
     </footer>
 
