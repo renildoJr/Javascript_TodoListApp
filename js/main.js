@@ -1,3 +1,5 @@
+'use strict'
+
 const appHeader = document.querySelector('.app-header')
 const appMain = document.querySelector('.app-main')
 const appFooter = document.querySelector('app-footer')
@@ -6,6 +8,7 @@ const taskLinks = document.querySelectorAll('.app-main .tasks ul li')
 const modal = document.querySelector('.task-modal')
 const btnAddTask = document.querySelector('.task-modal .btn-m')
 const tasksContainerList = document.querySelectorAll('.tasks-container .task-content')
+const msgContainer = document.querySelector('.msg-container')
 
 function openModal() {
     const inputTaskName = document.querySelector('.new_task-name')
@@ -16,7 +19,7 @@ function openModal() {
     
     modal.classList.remove('disable') 
     appHeader.classList.add('opacity')
-    appMain.style.maxHeight="300px"
+    appMain.style.maxHeight='300px'
 
     inputTaskName.value = ''
     inputTaskDesc.value = ''
@@ -27,11 +30,9 @@ function openModal() {
 
     // Add New Task 
     btnAddTask.addEventListener('click', (event)=>{
-        // event.preventDefault()
+        event.preventDefault()
         addTask(inputTaskName.value, inputTaskDesc.value, 0, inputTaskPriority.checked)
     })
-
-
 }
 
 function alternateClickable(btnArr, className, displayElements = false, elementsClassName = false) {
@@ -52,7 +53,7 @@ function alternateClickable(btnArr, className, displayElements = false, elements
 function closeModal() {
     modal.classList.add('disable') 
     appHeader.classList.remove('opacity')
-    appMain.style.maxHeight="100%"
+    appMain.style.maxHeight='100%'
 }
 
 alternateClickable(taskLinks, 'active', tasksContainerList, 'disable')
@@ -82,7 +83,11 @@ const addTask = (name, desc, days = [] || 0, prior = false) => {
     const newId = allTasks().length > 0 ? allTasks()[allTasks().length - 1].id + 1 : 0
     const newTask = new Task(newId, name, desc, days, prior)
     existingItems.push(newTask)
-    return localStorage.setItem('tasks', JSON.stringify(existingItems))
+    localStorage.setItem('tasks', JSON.stringify(existingItems))
+    closeModal()
+    msgContainer.style.display='flex'
+    msgContainer.children[0].innerHTML='New Task Added'
+    return setTimeout(() => {location.reload()}, 2000) // Método provisório
 }
 
 function displayTasks(filter = 'all') {
@@ -94,14 +99,13 @@ function displayTasks(filter = 'all') {
     }
 
     existingItems.map(task => sectionAllTasks.innerHTML+=`
-        <li draggable='true' class="task-card" onclick="finishTask(${task.id})">
-            <div class="left">
+        <li draggable='true' class='task-card' onclick='finishTask(${task.id})'>
+            <div class='left'>
                 <h3>${task.name}</h3>
                 <p>${task.days === 0 ? 'Today' : 'MODIFICAR ISSO MAIS TARDE EX: mon, tue, wed, ...'}</p> 
             </div>
-            <div class="right"></div>
+            <div class='right'></div>
         </li>
-    
     `)
 } 
 
@@ -114,12 +118,62 @@ function finishTask(taskId) {
     existingItems.splice(taskIndex, 1)
     localStorage.setItem('tasks', JSON.stringify(existingItems))
     localStorage.setItem('done_tasks', JSON.stringify(existingDoneTasks))
-    return location.reload() // Método provisório
+    msgContainer.style.display='flex'
+    msgContainer.children[0].innerHTML = 'Task Completed'
+    return setTimeout(() => {location.reload()}, 700) // Método provisório
 }
 
 displayTasks()
 
-console.log(allTasks())
+taskLinks[0].childNodes[1].textContent = allTasks().length
 
+// Calendar Logic
+const date = new Date()
+const btnCalendarTitle = document.querySelector('.calendar-title')
+const calendarMonths = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+const calendarDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const headerCalendar = document.querySelector('.app-header .calendar')
+const currentDay = date.getDay()
+const currentDate = date.getDate()
+const lastDayCurrentMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
 
-console.log(doneTasks())
+btnCalendarTitle.innerHTML=`
+    ${calendarMonths[date.getMonth()]} 
+    <i class="fa-sharp fa-solid fa-chevron-down"></i>
+`
+
+function showCalendarDays() {
+    const midHeader = document.querySelector('.mid-header')
+    const dateCards = []
+    let dateCardsHTML = []
+    let CurrentDateCard
+
+    for(let i = currentDate, day = currentDay; i <= lastDayCurrentMonth; i++) {
+        if(day > 6) {
+            day = 0
+        }
+        const cardObject = {
+            date: i,
+            day: calendarDays[day]
+        }
+
+        dateCards.push(cardObject)
+        day++
+    }
+
+    dateCards.map(card=>headerCalendar.innerHTML+=`
+        <button class="btn date-card">
+            <strong>${card.date}</strong>
+            ${card.day}
+        </button>`
+    )
+
+    dateCardsHTML = document.querySelectorAll('.calendar .date-card')
+    alternateClickable(dateCardsHTML, 'active')
+    dateCardsHTML[0].classList.add('active')
+    CurrentDateCard = dateCardsHTML[0].cloneNode(true)
+    midHeader.appendChild(CurrentDateCard)
+
+}
+
+showCalendarDays()

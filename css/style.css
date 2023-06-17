@@ -8,6 +8,7 @@
     --clearPrimary: #ac86d23b; 
     --hand_icon: #ffa200;
     --new_icon: #52ba89;
+    --msg_success: var(--new_icon);
     --alt-border: #c8c7c7;;
     --text3: var(--alt-border);
     --selected_card: #bfafff;
@@ -26,6 +27,38 @@ body {
 
 li {
     list-style: none;
+}
+
+.msg-container {
+    position: fixed;
+    top: 2rem;
+    left: 0;
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 1;
+}
+
+.msg {
+    border: 3px solid #000;
+    width: 350px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: -2rem auto;
+    font-weight: 800;
+}
+
+.msg.msg-success {
+    border: 3px solid white;
+    background: var(--msg_success);
+}
+
+.disable {
+    display: none;
 }
 
 .container {
@@ -98,6 +131,7 @@ li {
     margin-bottom: 1rem;
     font-size: 16px;
     font-weight: 600;
+    text-transform: capitalize;
 }
 
 .app-header .date-card.active {
@@ -111,6 +145,11 @@ li {
     width: 100%;
     overflow-x: scroll;
 }
+
+.app-header .calendar::-webkit-scrollbar {
+    width: 0 !important
+}
+
 
 .app-header .calendar .date-card {
     margin-right: 20px;
@@ -130,6 +169,12 @@ li {
     font-size: 1.4rem;
     text-align: center;
     min-height: 36px;
+    cursor: pointer;
+}
+
+.app-main .tasks ul li:hover,
+.app-main .tasks ul li.active {
+    border-bottom: 3px solid var(--primary);
 }
 
 .app-main .tasks ul li .count {
@@ -139,16 +184,8 @@ li {
     border-radius: 5px;
 }
 
-.app-main .tasks ul li.active {
-    border-bottom: 3px solid var(--primary);
-}
-
 .app-main .task-content {
     margin: 1rem 0;
-}
-
-.app-main .task-content.disable {
-    display: none;
 }
 
 .app-main .task-content .task-card {
@@ -192,6 +229,9 @@ li {
 
 /* App Footer */
 .app-footer .btn#add_new-task {
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
     background: var(--primary);
     font-size: 3rem;
     min-width: 60px;
@@ -294,4 +334,10 @@ li {
 
 .disable {
     display: none;
+}
+
+@media only screen and (min-width: 960px) {
+    .app-footer .btn#add_new-task {
+        position: relative;
+    }
 }
