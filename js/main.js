@@ -137,6 +137,28 @@ const currentDay = date.getDay()
 const currentDate = date.getDate()
 const lastDayCurrentMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
 
+headerCalendar.style.display="none"
+
+let displayCalendar = false;
+
+btnCalendarTitle.addEventListener('click', ()=> {
+    if(displayCalendar) {
+        displayCalendar = false
+    }else {
+        displayCalendar = true
+    }
+    calendarStatus()
+})
+
+function calendarStatus() {
+    if(displayCalendar) {
+        headerCalendar.style.display="flex"
+    }else {
+        headerCalendar.style.display='none'
+    }
+}
+
+
 btnCalendarTitle.innerHTML=`
     ${calendarMonths[date.getMonth()]} 
     <i class="fa-sharp fa-solid fa-chevron-down"></i>
@@ -173,7 +195,6 @@ function showCalendarDays() {
     dateCardsHTML[0].classList.add('active')
     CurrentDateCard = dateCardsHTML[0].cloneNode(true)
     midHeader.appendChild(CurrentDateCard)
-
 }
 
 showCalendarDays()
