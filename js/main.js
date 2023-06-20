@@ -9,6 +9,8 @@ const modal = document.querySelector('.task-modal')
 const btnAddTask = document.querySelector('.task-modal .btn-m')
 const tasksContainerList = document.querySelectorAll('.tasks-container .task-content')
 const msgContainer = document.querySelector('.msg-container')
+const allTasks = () => JSON.parse(localStorage.getItem('tasks')) || []
+const doneTasks = () =>  JSON.parse(localStorage.getItem('done_tasks')) || []
 
 function openModal() {
     const inputTaskName = document.querySelector('.new_task-name')
@@ -16,7 +18,7 @@ function openModal() {
     const inputTaskPriority = document.querySelector('.new_task-priotity')
     const btnOptions = document.querySelectorAll('.btn-options .btn')
     const btnCloseModal = document.querySelector('.btn-close')
-    
+
     modal.classList.remove('disable') 
     appHeader.classList.add('opacity')
     appMain.style.maxHeight='300px'
@@ -25,7 +27,11 @@ function openModal() {
     inputTaskDesc.value = ''
     inputTaskPriority.checked = false
 
+    btnOptions.forEach(btn=>btn.classList.remove('btn-active'))
+    btnOptions[0].classList.add('btn-active')
+
     alternateClickable(btnOptions, 'btn-active')
+
     btnCloseModal.addEventListener('click', closeModal)
 
     // Add New Task 
@@ -38,7 +44,7 @@ function openModal() {
 function alternateClickable(btnArr, className, displayElements = false, elementsClassName = false) {
     btnArr.forEach((btn, i, arr) => {
         btn.addEventListener('click', ()=> {
-            arr.forEach(btn=>btn.classList.remove(className))
+            arr.forEach(btn => btn.classList.remove(className))
             btn.classList.add(className)
             if (displayElements) {
                 displayElements.forEach(element=>{
@@ -56,32 +62,27 @@ function closeModal() {
     appMain.style.maxHeight='100%'
 }
 
-alternateClickable(taskLinks, 'active', tasksContainerList, 'disable')
-btnOpenModal.addEventListener('click', openModal)
-
 // localStorage Operations
-class Task {
-    id
-    name
-    desc
-    days
-    prior
-    constructor(id, name, desc, days, prior) {
-        this.id = id
-        this.name = name
-        this.desc = desc
-        this.days = days
-        this.prior = prior
-    }
-}
-
-const allTasks = () => JSON.parse(localStorage.getItem('tasks')) || []
-const doneTasks = () =>  JSON.parse(localStorage.getItem('done_tasks')) || []
-
 const addTask = (name, desc, days = [] || 0, prior = false) => {
+    class Task {
+        id
+        name
+        desc
+        days
+        prior
+        constructor(id, name, desc, days, prior) {
+            this.id = id
+            this.name = name
+            this.desc = desc
+            this.days = days
+            this.prior = prior
+        }
+    }
+
     const existingItems = allTasks()
     const newId = allTasks().length > 0 ? allTasks()[allTasks().length - 1].id + 1 : 0
     const newTask = new Task(newId, name, desc, days, prior)
+
     existingItems.push(newTask)
     localStorage.setItem('tasks', JSON.stringify(existingItems))
     closeModal()
@@ -123,52 +124,39 @@ function finishTask(taskId) {
     return setTimeout(() => {location.reload()}, 700) // Método provisório
 }
 
-displayTasks()
-
-taskLinks[0].childNodes[1].textContent = allTasks().length
-
 // Calendar Logic
-const date = new Date()
-const btnCalendarTitle = document.querySelector('.calendar-title')
-const calendarMonths = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
-const calendarDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-const headerCalendar = document.querySelector('.app-header .calendar')
-const currentDay = date.getDay()
-const currentDate = date.getDate()
-const lastDayCurrentMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
-
-headerCalendar.style.display="none"
-
-let displayCalendar = false;
-
-btnCalendarTitle.addEventListener('click', ()=> {
-    if(displayCalendar) {
-        displayCalendar = false
-    }else {
-        displayCalendar = true
-    }
-    calendarStatus()
-})
-
-function calendarStatus() {
-    if(displayCalendar) {
-        headerCalendar.style.display="flex"
-    }else {
-        headerCalendar.style.display='none'
-    }
-}
-
-
-btnCalendarTitle.innerHTML=`
-    ${calendarMonths[date.getMonth()]} 
-    <i class="fa-sharp fa-solid fa-chevron-down"></i>
-`
-
 function showCalendarDays() {
+    const date = new Date()
+    const btnCalendarTitle = document.querySelector('.calendar-title')
+    const calendarMonths = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+    const calendarDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const headerCalendar = document.querySelector('.app-header .calendar')
+    const currentDay = date.getDay()
+    const currentDate = date.getDate()
+    const lastDayCurrentMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
     const midHeader = document.querySelector('.mid-header')
     const dateCards = []
+    let displayCalendar = false;
     let dateCardsHTML = []
     let CurrentDateCard
+    
+    function calendarStatus() {
+        if(displayCalendar) {
+            headerCalendar.style.display="flex"
+        }else {
+            headerCalendar.style.display='none'
+        }
+    }
+
+    headerCalendar.style.display="none"
+    btnCalendarTitle.addEventListener('click', ()=> {
+        if(displayCalendar) {
+            displayCalendar = false
+        }else {
+            displayCalendar = true
+        }
+        calendarStatus()
+    })
 
     for(let i = currentDate, day = currentDay; i <= lastDayCurrentMonth; i++) {
         if(day > 6) {
@@ -190,6 +178,11 @@ function showCalendarDays() {
         </button>`
     )
 
+    btnCalendarTitle.innerHTML=`
+        ${calendarMonths[date.getMonth()]} 
+        <i class="fa-sharp fa-solid fa-chevron-down"></i>
+    `
+
     dateCardsHTML = document.querySelectorAll('.calendar .date-card')
     alternateClickable(dateCardsHTML, 'active')
     dateCardsHTML[0].classList.add('active')
@@ -197,4 +190,9 @@ function showCalendarDays() {
     midHeader.appendChild(CurrentDateCard)
 }
 
+displayTasks()
 showCalendarDays()
+
+alternateClickable(taskLinks, 'active', tasksContainerList, 'disable')
+btnOpenModal.addEventListener('click', openModal)
+taskLinks[0].childNodes[1].textContent = allTasks().length
